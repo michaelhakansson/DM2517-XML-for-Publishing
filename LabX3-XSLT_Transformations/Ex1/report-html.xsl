@@ -34,7 +34,7 @@
     <xsl:template match="head">
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-            <!--><link href="http://www.csc.kth.sep/~bjornh/2D1517/kthstandard.mac.css" type="text/css" rel="stylesheet"/>-->
+            <link href="http://www.csc.kth.se/~bjornh/2D1517/kthstandard.mac.css" type="text/css" rel="stylesheet"/>
             <title><xsl:value-of select="title"/></title>
         </head>
     </xsl:template>
