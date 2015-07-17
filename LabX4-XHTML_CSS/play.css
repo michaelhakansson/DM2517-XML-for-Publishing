@@ -1,0 +1,58 @@
+LINE {
+  display:block;
+  margin-left: 10pt;
+}
+
+MAINTITLE {
+    display: block;
+    font-size: 70pt;
+    margin-bottom: 100pt;
+}
+
+TITLE {
+    display: block;
+    text-transform: uppercase;
+}
+
+PERSONA {
+    display: block;
+}
+
+PLAYSUBT {
+    display: block;
+    font-size: 30pt;
+    margin-bottom: 10pt;
+    margin-top: 10pt;
+}
+
+ACT > TITLE  {
+    display: block;
+    text-align: center;
+    width: 200pt;
+}
+
+SCENE > TITLE  {
+    display: block;
+    text-align: center;
+    width: 200pt;
+    margin-left: 3pt;
+    margin-bottom: 10pt;
+}
+
+STAGEDIR {
+    display: block;
+    font-style: italic;
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+}
+
+/* Line counter */
+SCENE {
+    counter-reset: linenum;     /* Set the line counter to 0 for each scene */
+}
+
+LINE::after {
+    margin-left: 5pt;
+    counter-increment: linenum; /* Increment the line counter*/
+    content: counter(linenum);  /* Display the counter */
+}
