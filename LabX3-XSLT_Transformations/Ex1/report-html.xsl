@@ -43,19 +43,19 @@
         <p>
             <xsl:for-each select="h1">
                 <xsl:number level="multiple" format="1." grouping-separator=" "/>
-                <xsl:text>&#160;</xsl:text>
+                <xsl:text> </xsl:text>
                 <a href="#{generate-id(.)}">
                     <xsl:value-of select="@title"/>
                 </a><br/>
                 <xsl:for-each select="h2">
                     <xsl:number level="multiple" format="1." grouping-separator=" " count="h1|h2"/>
-                    <xsl:text>&#160;</xsl:text>
+                    <xsl:text> </xsl:text>
                     <a href="#{generate-id(.)}">
                         <xsl:value-of select="@title"/>
                     </a><br/>
                     <xsl:for-each select="h3">
                         <xsl:number level="multiple" format="1." grouping-separator=" " count="h1|h2|h3"/>
-                        <xsl:text>&#160;</xsl:text>
+                        <xsl:text> </xsl:text>
                         <a href="#{generate-id(.)}">
                             <xsl:value-of select="@title"/>
                         </a><br/>
@@ -67,7 +67,7 @@
             <a name="{generate-id(.)}"/>
             <h2>
                 <xsl:number level="multiple" format="1." grouping-separator=" "/>
-                <xsl:text>&#160;</xsl:text>
+                <xsl:text> </xsl:text>
                 <xsl:value-of select="@title"/>
             </h2>
             <xsl:for-each select="p">
@@ -77,7 +77,7 @@
                 <a name="{generate-id(.)}"/>
                 <h2>
                     <xsl:number level="multiple" format="1." grouping-separator=" " count="h1|h2"/>
-                    <xsl:text>&#160;</xsl:text>
+                    <xsl:text> </xsl:text>
                     <xsl:value-of select="@title"/>
                 </h2>
                 <xsl:for-each select="p">
@@ -87,7 +87,7 @@
                     <a name="{generate-id(.)}"/>
                     <h2>
                         <xsl:number level="multiple" format="1." grouping-separator=" " count="h1|h2|h3"/>
-                        <xsl:text>&#160;</xsl:text>
+                        <xsl:text> </xsl:text>
                         <xsl:value-of select="@title"/>
                     </h2>
                     <xsl:for-each select="p">
