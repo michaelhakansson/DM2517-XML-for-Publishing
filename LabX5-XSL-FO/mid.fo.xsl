@@ -19,40 +19,37 @@
      </fo:simple-page-master>
 
      <fo:simple-page-master 
-       master-name="example-page-master"
-       margin-right="2.1cm"
-       margin-left="2.1cm"
-       margin-bottom="3.54cm"
-       margin-top="3.54cm"
-       page-width="21.0cm"
-       page-height="29.7cm">
+        master-name="dramatis-personae"
+        page-width="21.0cm"
+        page-height="29.7cm"
+        margin-top="3.54cm"
+        margin-bottom="3.54cm"
+        >
        <fo:region-body
-         margin-top="2cm"
-         margin-bottom="2cm"
-         column-count="2"
-         column-gap="1cm"/>
-         <fo:region-before extent="2cm" region-name="region-before-with-explicit-name"/>
-         <fo:region-after extent="1.5cm"/>
-       </fo:simple-page-master>
+        column-count="2"
+        column-gap="-30mm"
+        />
+     </fo:simple-page-master>
+
      </fo:layout-master-set>
 
-     <fo:page-sequence master-reference="frontpage">
+
+    <!-- FRONTPAGE -->
+    <fo:page-sequence master-reference="frontpage">
       <fo:flow flow-name="xsl-region-body">
         <fo:block-container height="35mm">
-        <fo:block
-          text-align="center"
-          font-family="Times"
-          font-size="18pt"
-          font-style="italic"
-          >
-          VOLUME <xsl:apply-templates select="@volume"/>
-          BOOK <xsl:apply-templates select="@book"/>
-        </fo:block>
+          <fo:block
+            text-align="center"
+            font-family="Times"
+            font-size="18pt"
+            font-style="italic"
+            >
+            VOLUME <xsl:apply-templates select="@volume"/>
+            BOOK <xsl:apply-templates select="@book"/>
+          </fo:block>
         </fo:block-container>
         <fo:block text-align="center">
           <xsl:apply-templates select="MAINTITLE"/>
-
-
           <!-- IMAGE -->
           <fo:external-graphic src="shakespeare.jpg"
             content-height="scale-to-fit" 
@@ -60,30 +57,33 @@
             content-width="127mm" 
             scaling="non-uniform"/>
 
-          <xsl:apply-templates select="WRITER"/>
+            <xsl:apply-templates select="WRITER"/>
         </fo:block>
       </fo:flow>
     </fo:page-sequence>
 
-   <fo:page-sequence master-reference="example-page-master">
-     <fo:static-content flow-name="xsl-region-after">
-       <fo:block> 
-         <xsl:text>Efter</xsl:text>
-       </fo:block>
-     </fo:static-content>
+    <!-- CHARACTER PAGE -->
+    <fo:page-sequence master-reference="dramatis-personae">
 
-     <fo:static-content flow-name="region-before-with-explicit-name">
-       <fo:block> 
-        <xsl:text>Innan</xsl:text>
-      </fo:block>
-    </fo:static-content>
 
-    <fo:flow flow-name="xsl-region-body">
-      <fo:block>
-       <xsl:apply-templates select="ACT/SCENE/SPEECH/LINE"/>
-     </fo:block>
-   </fo:flow>
- </fo:page-sequence>
+      <fo:flow flow-name="xsl-region-body">
+
+        <xsl:apply-templates select="PERSONAE"/>
+      
+        <fo:block
+          text-align="center"
+          font-family="Times"
+          font-size="12pt"
+          span="all"
+          height="50mm"
+          margin-top="5mm"
+          margin-bottom="35.4mm">
+          TEST
+        </fo:block>
+      </fo:flow>
+      
+    </fo:page-sequence>
+
 </fo:root>
 </xsl:template>
 
@@ -106,6 +106,79 @@
     By <xsl:apply-templates/>
   </fo:block>
 </xsl:template>
+
+<xsl:template match="PERSONAE">
+    <xsl:apply-templates select="TITLE"/>
+    <xsl:apply-templates select="PERSONA | PGROUP"/>
+  </xsl:template>
+
+<xsl:template match="TITLE">
+  <fo:block-container height="55mm" span="all">
+    <fo:block
+      text-align="center"
+      font-family="Times"
+      font-size="18pt"
+      font-style="italic">
+      <xsl:apply-templates/>
+    </fo:block>
+  </fo:block-container>
+</xsl:template>
+
+<xsl:template match="PERSONA">
+    <fo:block
+      text-align="center"
+      font-family="Times"
+      font-size="10pt"
+      margin-bottom="10pt">
+      <xsl:apply-templates/>
+    </fo:block>
+</xsl:template>
+
+<xsl:template match="PGROUP">
+
+
+<fo:table>
+  <fo:table-column column-width="20mm" column-gap="10mm" border-left-color="green" border-left-width="0.5pt" border-left-style="solid"/>
+
+
+
+    <fo:table-body>
+    <fo:table-row>
+      <fo:table-cell>
+        <fo:block text-align="center">
+        table columns
+        </fo:block>
+      </fo:table-cell>
+      <fo:table-cell>
+        <fo:block text-align="center">
+        with
+        </fo:block>
+      </fo:table-cell>
+    </fo:table-row>
+
+  </fo:table-body>
+      </fo:table>
+
+
+  <fo:block>
+    <xsl:for-each select="PERSONA">
+      <fo:block border-right-style="solid">
+        <xsl:apply-templates select="." />
+      </fo:block>
+    </xsl:for-each>
+    <xsl:apply-templates select="GRPDESCR"/>
+  </fo:block>
+</xsl:template>
+
+<xsl:template match="GRPDESCR">
+    <fo:block
+      text-align="center"
+      font-family="Times"
+      font-size="10pt">
+      <xsl:apply-templates/>
+    </fo:block>
+</xsl:template>
+
 
 <xsl:template match="SPEECH/LINE">
   <fo:block text-align="center">
