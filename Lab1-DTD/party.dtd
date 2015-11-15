@@ -43,7 +43,7 @@
 
 <!ELEMENT affiliation (#PCDATA)>
 
-<!ELEMENT placementpreferences (id)>
+<!ELEMENT placementpreferences (id+)>
 
 <!ELEMENT id EMPTY>
 <!ATTLIST id nextto (yes|no) #REQUIRED>
