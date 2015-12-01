@@ -15,11 +15,7 @@
     <dc:creator>bjornh@kth.se</dc:creator>
     <syn:updatePeriod>daily</syn:updatePeriod>
     <syn:updateFrequency>1</syn:updateFrequency>
-    <syn:updateBase><?php
-    date_default_timezone_set('Europe/Stockholm'); // Set timezone
-    $date = date('c', time()); // layout c = 2006-01-01T00:00+00:00
-    print utf8_encode($date);
-    ?></syn:updateBase>
+    <syn:updateBase>2006-01-01T00:00+00:00</syn:updateBase>
 
     <?php
     // Connect using host, username, password and databasename
