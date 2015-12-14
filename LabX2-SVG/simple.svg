@@ -26,7 +26,7 @@
             type="rotate"
             keyframe="0;.5;1"
             values="0 50 80; 720 50 80; 0 50 80"
-            begin="0s" dur="20s"
+            begin="0s" dur="10s"
             repeatCount="indefinite"
             />
         <!-- Rörelse för jo-jon efter y-axeln -->
